@@ -3,7 +3,6 @@ from src.core.logging import setup_fastapi_logging
 from src.core.exceptions import (
     TaskNotFoundError,
     DocumentNotFoundError,
-    SessionNotFoundError,
     OpenAIError,
     WikipediaError,
     ValidationError
@@ -16,7 +15,6 @@ __all__ = [
     'setup_fastapi_logging',
     'TaskNotFoundError',
     'DocumentNotFoundError',
-    'SessionNotFoundError',
     'OpenAIError',
     'WikipediaError',
     'ValidationError',

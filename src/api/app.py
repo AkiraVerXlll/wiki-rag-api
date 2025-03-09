@@ -10,7 +10,6 @@ from src.core.logging import setup_fastapi_logging
 from src.core.exceptions import (
     TaskNotFoundError,
     DocumentNotFoundError,
-    SessionNotFoundError,
     OpenAIError,
     ValidationError
 )
@@ -96,7 +95,6 @@ def chat(inputs: ChatInputs, history_parser: HistoryParser, text_processor: Text
         - status: int - HTTP status code (200 for success)
 
     :raises DocumentNotFoundError: If the requested document is not found
-    :raises SessionNotFoundError: If the chat session is not found
     :raises OpenAIError: If there's an error with the OpenAI API
     :raises ValidationError: If the input validation fails
     """
@@ -106,7 +104,7 @@ def chat(inputs: ChatInputs, history_parser: HistoryParser, text_processor: Text
                                    inputs.text, history_parser, text_processor)
         logger.info(f"Successfully generated response for session: {inputs.session_id}")
         return {"response": response}, 200
-    except (DocumentNotFoundError, SessionNotFoundError, OpenAIError) as e:
+    except (DocumentNotFoundError, OpenAIError) as e:
         logger.error(f"Error in chat endpoint: {str(e)}")
         raise
     except Exception as e:

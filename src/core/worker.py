@@ -1,13 +1,10 @@
 import os
-from typing import Optional
-
 from celery import Celery
 from loguru import logger
 from openai import OpenAI
 
 from src.core.exceptions import (
     DocumentNotFoundError,
-    SessionNotFoundError,
     OpenAIError,
     TaskNotFoundError,
     WikipediaError,
@@ -156,10 +153,7 @@ def get_chat_response(session_id: str,
         If an error occurs while interacting with the OpenAI API.
     """
     try:
-        try:
-            chat_history = history_parser.load_from_json(session_id)
-        except FileNotFoundError:
-            raise SessionNotFoundError(session_id)
+        chat_history = history_parser.load_from_json(session_id)
         
         rag_info = similar_search(inputs, document_id, text_parser)
         prompt_builder = PromptBuilder()
@@ -180,7 +174,7 @@ def get_chat_response(session_id: str,
         return response
         
     except Exception as e:
-        if isinstance(e, (SessionNotFoundError, DocumentNotFoundError, OpenAIError)):
+        if isinstance(e, (DocumentNotFoundError, OpenAIError)):
             raise
         logger.error(f"Unexpected error in get_chat_response: {str(e)}")
         raise ValidationError("Failed to process chat request", details={"error": str(e)})

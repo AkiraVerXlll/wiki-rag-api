@@ -55,7 +55,7 @@ class ChatHistoryParser:
         """
         full_path = f'{self.folder_path}/{session_id}'
         if not self.is_file_exists(session_id):
-            raise FileNotFoundError(f"No existing chat history found at {full_path}.")
+            return []
         with open(full_path, 'r') as f:
             try:
                 chat_history = json.load(f)

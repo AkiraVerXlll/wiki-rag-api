@@ -35,19 +35,6 @@ class DocumentNotFoundError(AppException):
             status_code=404
         )
 
-class SessionNotFoundError(AppException):
-    """
-    Raised when a requested chat session is not found.
-
-    :param session_id: 
-        The ID of the session that was not found
-    """
-    def __init__(self, session_id: str):
-        super().__init__(
-            message=f"Chat session with ID {session_id} not found",
-            status_code=404
-        )
-
 class OpenAIError(AppException):
     """
     Raised when there's an error with OpenAI API.
