@@ -171,8 +171,8 @@ Common error status codes:
 ├── logs/                  # Application logs
 ├── requirements.txt       # Python dependencies
 ├── docker-compose.yml     # Docker services configuration
-├── Dockerfile            # Application container configuration
-└── .gitignore           # Git ignore rules
+├── Dockerfile             # Application container configuration
+└── .dockerignore          # Docker ignore rules
 ```
 
 ## Extensibility
