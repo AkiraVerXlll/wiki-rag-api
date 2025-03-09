@@ -1,27 +1,26 @@
-# Document Processing Application
+# Wikipedia-based RAG Application
 
-This application is a distributed system built with FastAPI and Celery for processing documents asynchronously. It uses Redis for both caching and as a message broker for Celery tasks.
+This application implements a Retrieval-Augmented Generation (RAG) system that enhances Large Language Model responses with relevant Wikipedia content. The system processes Wikipedia articles, retrieves the most relevant passages based on user queries, and uses OpenAI's API to generate contextually accurate responses.
 
 ## Features
 
-- Asynchronous document processing
-- Redis-based caching and task queue
-- Scalable architecture with separate worker processes
-- Shared storage for documents and indexes across services
-- OpenAI integration for document processing
+- **RAG Implementation**: Combines retrieval of relevant Wikipedia passages with OpenAI's generative capabilities
+- **Wikipedia Data Processing**: Efficiently processes and indexes Wikipedia articles
+- **Semantic Search**: Finds the most relevant content passages for user queries
+- **Asynchronous Processing**: Uses Celery and Redis for efficient task handling
+- **Shared Document Storage**: Centralized storage for processed Wikipedia data and indexes
 
 ## System Architecture
 
-The application consists of three main components:
-- **API Server**: FastAPI application handling HTTP requests
-- **Celery Worker**: Background task processor for document handling
-- **Redis**: Cache and message broker
+The application consists of two main components:
+- **API Server**: FastAPI application handling HTTP requests and semantic search
+- **Background Processing**: Celery workers with Redis as message broker and cache for asynchronous Wikipedia data processing and indexing
 
 ## Prerequisites
 
 - Docker and Docker Compose
 - OpenAI API key
-- User Agent string for API requests
+- User Agent string for Wikipedia API requests
 
 ## Local Setup
 
