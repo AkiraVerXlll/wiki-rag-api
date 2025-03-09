@@ -1,7 +1,7 @@
 import os
 import pytest
 from src.services.additional_data_savers.wiki_saver import WikiSaver
-from src.settings import DATA_PATH
+from src.core.settings import DATA_PATH
 
 
 @pytest.fixture

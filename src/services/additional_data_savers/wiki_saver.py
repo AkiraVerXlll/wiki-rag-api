@@ -1,7 +1,7 @@
 import wikipediaapi
 
 from src.services.additional_data_savers.base_additional_data_saver import IAdditionalDataSaver
-from src.settings import USER_AGENT
+from src.core.settings import USER_AGENT
 
 class WikiSaver(IAdditionalDataSaver):
 

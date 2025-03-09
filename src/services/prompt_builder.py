@@ -5,14 +5,14 @@ class PromptBuilder:
     A class responsible for building and managing prompts for the language model.
     """
 
-    def __init__(self, encoding="gpt-4"):
+    def __init__(self, model_for_encoding="gpt-4"):
         """
         Initialize the PromptBuilder with a GPT-4 tokenizer for counting tokens in messages.
 
-        :param encoding: str, optional
+        :param model_for_encoding: str, optional
             The encoding to use for tokenization (default is "gpt-4").
         """
-        self.tokenizer = tiktoken.get_encoding(encoding)
+        self.tokenizer = tiktoken.encoding_for_model(model_for_encoding)
 
     def count_tokens(self, messages: list[dict[str, str]]) -> int:
         """

@@ -1,5 +1,7 @@
+from itertools import dropwhile
+
 from langchain.text_splitter import RecursiveCharacterTextSplitter
-from langchain_community.embeddings.openai import OpenAIEmbeddings
+from langchain_openai.embeddings.base import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain.docstore.document import Document
 from src.services.text_processors.base_text_processor import ITextProcessor
@@ -8,7 +10,7 @@ import os
 
 class FaissTextProcessor(ITextProcessor):
 
-    def __init__(self, folder_path: str):
+    def __init__(self, folder_path: str, model: str = "text-embedding-3-large"):
         """
         Initialize the TextProcessor with an embedding model (OpenAIEmbeddings)
         and specify the folder path for storing and loading indices.
@@ -17,7 +19,7 @@ class FaissTextProcessor(ITextProcessor):
             The directory where FAISS indices are stored or loaded from.
         """
         super().__init__(folder_path)
-        self.embedding_model = OpenAIEmbeddings()
+        self.embedding_model = OpenAIEmbeddings(model=model)
         self.vectorstore = None
 
     def index_exists(self, faiss_index: str) -> bool:
@@ -39,7 +41,7 @@ class FaissTextProcessor(ITextProcessor):
         :param faiss_index: str
             The name of the FAISS index to load.
         """
-        self.vectorstore = FAISS.load_local(f'{self.folder_path}/{faiss_index}', self.embedding_model)
+        self.vectorstore = FAISS.load_local(f'{self.folder_path}/{faiss_index}', self.embedding_model, allow_dangerous_deserialization=True)
 
     @staticmethod
     def split_text(text: str, chunk_size: int, chunk_overlap: int) -> list[Document]:

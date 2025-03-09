@@ -2,7 +2,7 @@ import pytest
 import json
 import os
 from unittest.mock import patch
-from src.settings import SESSIONS_PATH
+from src.core.settings import SESSIONS_PATH
 from src.services.chat_history_parser import ChatHistoryParser
 
 

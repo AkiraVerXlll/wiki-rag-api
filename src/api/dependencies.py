@@ -8,7 +8,7 @@ from src.services.additional_data_savers.wiki_saver import WikiSaver
 from src.services.chat_history_parser import ChatHistoryParser
 from src.services.text_processors.base_text_processor import ITextProcessor
 from src.services.text_processors.faiss_text_processor import FaissTextProcessor
-from src.settings import INDICES_PATH, DOCUMENTS_PATH, SESSIONS_PATH
+from src.core.settings import INDICES_PATH, DOCUMENTS_PATH, SESSIONS_PATH
 
 
 def get_faiss_text_processor() -> FaissTextProcessor:
