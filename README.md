@@ -26,8 +26,8 @@ The application consists of two main components:
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/AkiraVerXlll/trainee-test-assignment.git
-cd trainee-test-assignment
+git clone https://github.com/AkiraVerXlll/wiki-rag-api.git
+cd wiki-rag-api
 ```
 
 2. Start the application using Docker Compose with environment variables:
